@@ -1,0 +1,2 @@
+
+from aiv.settings import *
