@@ -47,6 +47,9 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.multilingual.MultilingualURLMiddleware',
 ]
 
 ROOT_URLCONF = 'aiv.urls'
@@ -57,7 +60,19 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.admin',
+    'django.contrib.sites',
     'config',
+    'cms',
+    'cms.plugins.text',
+    'cms.plugins.picture',
+    'cms.plugins.link',
+    'cms.plugins.file',
+    'cms.plugins.snippet',
+    'cms.plugins.googlemap',
+    'mptt',
+    'publisher',
+    'reversion',
+    'south',
 )
 
 TEMPLATE_LOADERS = (
@@ -79,6 +94,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
+    'cms.context_processors.media',
 )
 
 # Server settings
@@ -89,3 +105,14 @@ CACHE_BACKEND = 'locmem:///?max_entries=5000'
 # django-config settings
 CONFIG_SITES = ['www.a-iv.info', ]
 CONFIG_REDIRECTS = ['a-iv.info', ]
+
+# django-cms
+CMS_TEMPLATES = (
+        ('base.html', gettext_noop('default')),
+        ('frontpage.html', gettext_noop('front page')),
+)
+
+LANGUAGES = (
+        ('ru', gettext_noop('Russian')),
+        ('en', gettext_noop('English')),
+)

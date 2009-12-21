@@ -1,5 +1,5 @@
 
-from django.conf.urls.defaults import patterns, include, handler500, handler404
+from django.conf.urls.defaults import patterns, include, handler500, handler404, url
 from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
@@ -19,6 +19,7 @@ urlpatterns += patterns('',
 
 urlpatterns += patterns(
     '',
-    (r'^admin/(.*)', admin.site.root),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include('cms.urls')),
 #    (r'^accounts/login/$', 'django.contrib.auth.views.login'),
 )
